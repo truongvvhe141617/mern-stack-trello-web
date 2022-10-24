@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import { Container, Draggable } from 'react-smooth-dnd'
 import { Dropdown, Form, Button } from 'react-bootstrap'
 import { cloneDeep } from 'lodash'
@@ -13,7 +13,8 @@ import ListCards from 'components/ListCards/ListCards'
 
 function Column(props) {
   const { column, onCardDrop, onUpdateColumnState } = props
-  const cards = mapOrder(column.cards, column.cardOrder, '_id')
+  // const cards = mapOrder(column.cards, column.cardOrder, '_id')
+  const cards = column.cards
 
   const [showConfirmModal, setShowConfirmModal] = useState(false)
   const toggleShowConfirmModal = () => setShowConfirmModal(!showConfirmModal)
@@ -29,11 +30,11 @@ function Column(props) {
   const [newCardTitle, setNewCardTitle] = useState('')
   const onNewCardTitleChange = (e) => setNewCardTitle(e.target.value)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setColumnTitle(column.title)
   }, [column.title])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (newCardTextareaRef && newCardTextareaRef.current) {
       newCardTextareaRef.current.focus()
       newCardTextareaRef.current.select()
