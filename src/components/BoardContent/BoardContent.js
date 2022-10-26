@@ -112,7 +112,7 @@ function BoardContent() {
       let newColumns = [...columns]
 
       let currentColumn = newColumns.find(c => c._id === columnId)
-      if(!currentColumn) return
+      if (!currentColumn) return
          // https://redux-toolkit.js.org/usage/immer-reducers
       // Vì thằng currentColumn hiện tại nó là dữ liệu lấy ra từ newColumns, mà newColumns là lấy ra từ redux
       // Redux nó không cho Mutating (đột biến) trực tiếp dữ liệu kiểu Object.data = '123' ở bên ngoài scope của Reducer
