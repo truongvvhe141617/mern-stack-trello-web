@@ -17,10 +17,10 @@ function App() {
             <BoardContent />
           </div>
       }/>
-        <Route path='/sign-up' element={
+        <Route path='/signUp' element={
             <Auth/>
       }/>
-        <Route path='/sign-in' element={
+        <Route path='/signIn' element={
             <Auth/>
       }/>
         <Route path='*' element={
