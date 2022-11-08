@@ -1,5 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { useForm } from 'react-hook-form';
+import { signUpUserAPI } from 'actions/ApiCall';
 import {
   EMAIL_RULE,
   EMAIL_RULE_MESSAGE,
@@ -16,21 +19,25 @@ function SignUp() {
     watch,
     formState: { errors },
   } = useForm()
-
+  const navigate = useNavigate()
   const onSubmitSignUp = (data) => {
-    console.log(data);
-  };
+    toast.promise(signUpUserAPI(data), {pending: 'Signing up....'})
+    .then(user => {
+      navigate(`/signIn?registeredEmail=${user.email}`)
+    })
+  }
+
   return (
     <form
-      className="auth__form form__sign-up"
+      className='auth__form form__sign-up'
       onSubmit={handleSubmit(onSubmitSignUp)}
     >
-      <h2 className="auth__form__title">Sign Up</h2>
-      <div className="auth__form__input-field">
-        <i className="fa fa-envelope"></i>
+      <h2 className='auth__form__title'>Sign Up</h2>
+      <div className='auth__form__input-field'>
+        <i className='fa fa-envelope'></i>
         <input
-          type="text"
-          placeholder="Email"
+          type='text'
+          placeholder='Email'
           autoComplete='nope'
           {...register('email', {
             required: FIELD_REQUIRED_MESSAGE,
@@ -42,11 +49,11 @@ function SignUp() {
         />
       </div>
       {fieldErrorMessage(errors,'email')}
-      <div className="auth__form__input-field">
-        <i className="fa fa-lock"></i>
+      <div className='auth__form__input-field'>
+        <i className='fa fa-lock'></i>
         <input
-          type="password"
-          placeholder="Password"
+          type='password'
+          placeholder='Password'
           autoComplete='nope'
           {...register('password', {
             required: FIELD_REQUIRED_MESSAGE,
@@ -58,11 +65,11 @@ function SignUp() {
         />
       </div>
       {fieldErrorMessage(errors,'password')}
-      <div className="auth__form__input-field">
-        <i className="fa fa-lock"></i>
+      <div className='auth__form__input-field'>
+        <i className='fa fa-lock'></i>
         <input
-          type="password"
-          placeholder="Password Confirmation"
+          type='password'
+          placeholder='Password Confirmation'
           {...register('password_confirmation', {
             validate: (value) => {
                 return value === watch('password') || 'Password confirmation does not match.' // check đúng với password
@@ -71,7 +78,7 @@ function SignUp() {
         />
       </div>
       {fieldErrorMessage(errors,'password_confirmation')}   
-      <button className="auth__form__submit" type="submit">
+      <button className='auth__form__submit' type='submit'>
         Sign Up
       </button>
     </form>

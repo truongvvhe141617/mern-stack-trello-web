@@ -95,53 +95,53 @@ function Column(props) {
   }
 
   return (
-    <div className="column">
-      <header className="column-drag-handle">
-        <div className="column-title">
-          <Form className="common__form">
+    <div className='column'>
+      <header className='column-drag-handle'>
+        <div className='column-title'>
+          <Form className='common__form'>
             <Form.Control
-              size="sm"
-              type="text"
-              className="trungquandev-content-editable"
+              size='sm'
+              type='text'
+              className='trungquandev-content-editable'
               value={columnTitle}
               onChange={handleColumnTitleChange}
               onBlur={handleColumnTitleBlur}
               onKeyDown={saveContentAfterPressEnter}
               onClick={selectAllInlineText}
               onMouseDown={e => e.preventDefault()}
-              spellCheck="false"
+              spellCheck='false'
             />
           </Form>
         </div>
-        <div className="column-dropdown-actions">
+        <div className='column-dropdown-actions'>
           <Dropdown>
-            <Dropdown.Toggle id="dropdown-basic" size="sm" className="dropdown-btn" />
+            <Dropdown.Toggle id='dropdown-basic' size='sm' className='dropdown-btn' />
 
             <Dropdown.Menu>
-              <Dropdown.Item className="add-card" onClick={toggleOpenNewCardForm}>
-                <i className="fa fa-plus" />Add card...
+              <Dropdown.Item className='add-card' onClick={toggleOpenNewCardForm}>
+                <i className='fa fa-plus' />Add card...
               </Dropdown.Item>
-              <Dropdown.Item className="remove-column" onClick={toggleShowConfirmModal}>
-                <i className="fa fa-trash" />Remove column...
+              <Dropdown.Item className='remove-column' onClick={toggleShowConfirmModal}>
+                <i className='fa fa-trash' />Remove column...
               </Dropdown.Item>
-              <Dropdown.Item className="move-cards">
-                <i className="fa fa-arrows" />Move all cards in this column (beta)...
+              <Dropdown.Item className='move-cards'>
+                <i className='fa fa-arrows' />Move all cards in this column (beta)...
               </Dropdown.Item>
-              <Dropdown.Item className="archive-cards">
-                <i className="fa fa-archive" />Archive all cards in this column (beta)...
+              <Dropdown.Item className='archive-cards'>
+                <i className='fa fa-archive' />Archive all cards in this column (beta)...
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </div>
       </header>
-      <div className="card-list">
+      <div className='card-list'>
         <Container
-          orientation="vertical" // default
-          groupName="trungquandev-columns"
+          orientation='vertical' // default
+          groupName='trungquandev-columns'
           onDrop={dropResult => onCardDrop(column._id, dropResult)}
           getChildPayload={index => cards[index]}
-          dragClass="card-ghost"
-          dropClass="card-ghost-drop"
+          dragClass='card-ghost'
+          dropClass='card-ghost-drop'
           dropPlaceholder={{
             animationDuration: 150,
             showOnTop: true,
@@ -154,14 +154,14 @@ function Column(props) {
          />
         </Container>
         {openNewCardForm &&
-          <div className="add-new-card-area">
-            <Form className="common__form">
+          <div className='add-new-card-area'>
+            <Form className='common__form'>
               <Form.Control
-                size="sm"
-                as="textarea"
-                rows="3"
-                placeholder="Enter a title for this card.."
-                className="textarea-enter-new-card"
+                size='sm'
+                as='textarea'
+                rows='3'
+                placeholder='Enter a title for this card..'
+                className='textarea-enter-new-card'
                 ref={newCardTextareaRef}
                 value={newCardTitle}
                 onChange={onNewCardTitleChange}
@@ -173,16 +173,21 @@ function Column(props) {
       </div>
       <footer>
         {openNewCardForm &&
-          <div className="add-new-card-actions">
-            <Button variant="success" size="sm" onClick={addNewCard}>Add card</Button>
-            <span className="cancel-icon" onClick={toggleOpenNewCardForm}>
-              <i className="fa fa-trash icon" />
+          <div className='add-new-card-actions'>
+            <Button 
+            className='tqd-send'
+            variant='success' 
+            size='sm' 
+            onClick={addNewCard}>Add card
+            </Button>
+            <span className='cancel-icon' onClick={toggleOpenNewCardForm}>
+              <i className='fa fa-trash icon' />
             </span>
           </div>
         }
         {!openNewCardForm &&
-          <div className="footer-actions" onClick={toggleOpenNewCardForm}>
-            <i className="fa fa-plus icon" /> Add another card
+          <div className='footer-actions' onClick={toggleOpenNewCardForm}>
+            <i className='fa fa-plus icon' /> Add another card
           </div>
         }
       </footer>
@@ -190,7 +195,7 @@ function Column(props) {
       <ConfirmModal
         show={showConfirmModal}
         onAction={onConfirmModalAction}
-        title="Remove column"
+        title='Remove column'
         content={`Are you sure you want to remove <strong>${column.title}</strong>. <br /> All related cards will also be removed!`}
       />
     </div>
